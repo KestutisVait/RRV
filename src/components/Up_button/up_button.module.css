@@ -1,0 +1,25 @@
+.up_button{
+    height: 40px;
+    width: 40px;
+    position: fixed;
+    display: none;
+    justify-content: center;
+    align-items: start;
+    bottom: 20px;
+    right: 20px;
+    background-color: #042601;
+    border: none;
+    padding: 5px 8px;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 5;
+    transition: height 0.3s ease-in-out;
+}
+
+.up_button:hover{
+    height: 80px;    
+}
+
+.show_button{
+    display: flex;
+}

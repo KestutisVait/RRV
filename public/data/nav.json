@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "label": "Apie mane",
+    "href": "apie"
+  },
+  {
+    "id": 2,
+    "label": "Produktai",
+    "href": "produktai"
+  },
+  {
+    "id": 3,
+    "label": "Tinklaraštis",
+    "href": "tinklarastis"
+  },
+  {
+    "id": 4,
+    "label": "Kontaktai",
+    "href": "kontaktai"
+  }
+]

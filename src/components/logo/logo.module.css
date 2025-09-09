@@ -1,0 +1,40 @@
+.nav_logo{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 0 0 0 20px;
+}
+.nav_logo svg {
+  width: 30px;
+  height: 30px;
+}
+.nav_logo svg:nth-child(2) {
+  margin-left: -2px;
+}
+.nav_logo svg:last-child {
+  margin-left: -3px;
+}
+.logo{
+  display:flex;
+  align-items: center;
+  /* cursor: pointer; */
+}
+.logo svg:nth-child(2) {
+  margin-left: -5px;
+}
+.logo svg:last-child {
+  margin-left: -10px;
+}
+
+@media screen and (max-width: 480px) {
+  .nav_logo svg {
+    width: 22px;
+    height: auto;
+  }
+  .logo svg:nth-child(2) {
+    margin-left: -4px;
+  }
+  .logo svg:last-child {
+    margin-left: -7px;
+  }
+}
