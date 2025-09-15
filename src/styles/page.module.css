@@ -13,9 +13,9 @@
 }
 .bg_shape {
   position: absolute;
-  top: 0;
-  /* right: 265px; */
-  right: 250px;
+  top: -1px;
+  right: 17px;
+  /* right: 250px; */
   z-index: -1;
 }
 
