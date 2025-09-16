@@ -3,9 +3,14 @@
   flex-direction: column;
   /* overflow-y: scroll; */
 }
+.sections_wrapper {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
 .section {
   width: 100vw;
-  height: 85vh;
+  height: 100vh;
   position:relative;
   display: flex;
   /* border-bottom: 3px solid black; */

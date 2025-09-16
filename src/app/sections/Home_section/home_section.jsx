@@ -89,39 +89,39 @@ export default function HomeSection({ id }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect( () => {
-    const section = document.querySelector(`.${homeStyles.home_section}`);
+  // useEffect( () => {
+  //   const section = document.querySelector(`.${homeStyles.home_section}`);
 
 
 
-    if (!section) return;
+  //   if (!section) return;
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
+  //   const observer = new IntersectionObserver((entries) => {
+  //     entries.forEach((entry) => {
 
-        if(entry.isIntersecting) {
-          section.scrollIntoView({ behavior: "smooth", block: "start" });
-          console.log("Intersecting home section");
+  //       if(entry.isIntersecting) {
+  //         section.scrollIntoView({ behavior: "smooth", block: "start" });
+  //         console.log("Intersecting home section");
           
-        } else {
-          console.log("Not intersecting home section");
-        }
-      });
-    }, { root: null,       // viewport
-        rootMargin: "0px",
-        threshold: 0.3,  
-        // threshold: [0, 0.7],  
-    });
-    observer.observe(section);
+  //       } else {
+  //         console.log("Not intersecting home section");
+  //       }
+  //     });
+  //   }, { root: null,       // viewport
+  //       rootMargin: "0px",
+  //       threshold: 0.3,  
+  //       // threshold: [0, 0.7],  
+  //   });
+  //   observer.observe(section);
 
-    return () => {
-      if (section) observer.unobserve(section);
-    };
+  //   return () => {
+  //     if (section) observer.unobserve(section);
+  //   };
 
-  }, []);
+  // }, []);
 
   return (
-    <div  id={id || "home"} className={`${styles.section} ${homeStyles.home_section}`}>
+    <div data-scroll-section id={id || "home"} className={`${styles.section} ${homeStyles.home_section}`}>
       {/* <div className={homeStyles.bg_shape}>
         <Image src="/BG_shapes/yellow_polygon.svg" alt="bg_shape" width={0} height={0} sizes="100vw" style={{ width: 'auto', height: '1333px' }} />
         <svg xmlns="http://www.w3.org/2000/svg" width="1750" height="1333" viewBox="-200 0 1734 1333">
