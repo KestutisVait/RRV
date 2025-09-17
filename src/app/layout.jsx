@@ -1,5 +1,6 @@
 import { Poppins } from 'next/font/google'
 import "..//styles/globals.css";
+import { SectionsProvider } from "@/context/SectionsContext"; // adjust path
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -17,7 +18,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={poppins.className}>
       <body>
-        {children}
+        <SectionsProvider>
+          {children}
+        </SectionsProvider>
       </body>
     </html>
   );
