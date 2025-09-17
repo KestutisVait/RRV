@@ -4,7 +4,9 @@ import styles from "../logo.module.css";
 export default function Logo({
   colorCircle = "#ccc",
   colorTriangle = "#000",
-  height = 200, // desired height in px
+  height = 200, 
+  marginCircle = -5, 
+  marginTriangle = -10, 
 }) {
   // Original SVG parameters (from your viewBox and shapes)
   const originalViewBox = { x: 12, y: 23, width: 95, height: 82 };
@@ -57,7 +59,7 @@ export default function Logo({
   const scaledPath = scalePath(originalPath, scale);
 
   return (
-    <div className={styles.logo}>
+    <div  style={{ display: "flex", alignItems: "center" }}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox={`${scaledViewBox.x} ${scaledViewBox.y} ${scaledViewBox.width} ${scaledViewBox.height}`}
@@ -72,7 +74,8 @@ export default function Logo({
         viewBox={`${scaledViewBox.x} ${scaledViewBox.y} ${scaledViewBox.width} ${scaledViewBox.height}`}
         height={height}
         preserveAspectRatio="xMidYMid meet"
-      >
+        style={{ marginLeft: `${marginCircle}px` }}
+        >
         <circle cx={scaledCircle.cx} cy={scaledCircle.cy} r={scaledCircle.r} fill={colorCircle} />
       </svg>
 
@@ -81,6 +84,7 @@ export default function Logo({
         viewBox={`${scaledViewBox.x} ${scaledViewBox.y} ${scaledViewBox.width} ${scaledViewBox.height}`}
         height={height}
         preserveAspectRatio="xMidYMid meet"
+        style={{ marginLeft: `${marginTriangle}px` }}
       >
         <path d={scaledPath} fill={colorTriangle} />
       </svg>

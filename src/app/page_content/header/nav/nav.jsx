@@ -6,12 +6,25 @@ import styles from "./nav.module.css";
 export default function Example({ sections }) {
     const [navItems, setNavItems] = useState([]);
 
+    useEffect(() => {
+      const fetchNavItems = async () => {
+        try {
+          const response = await axios.get("http://localhost:3000/data/nav.json");
+          setNavItems(response.data);
+        } catch (error) {
+          console.error("Error fetching nav items:", error);
+        }
+      };
+  
+      fetchNavItems();
+    }, []);
+
     // console.log(sections[0]);
     
 
   return (
     <div className={styles.wrapper}>
-        {sections && sections.map((item) => (
+        {navItems && navItems.map((item) => (
             <div
                 className={styles.nav_item} 
                 key={item.id} 

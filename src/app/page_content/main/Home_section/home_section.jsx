@@ -4,10 +4,10 @@ import styles from "@styles/page.module.css";
 import homeStyles from "./home.module.css";
 import Image from "next/image";
 import StripedSVGPattern from "@/components/striped_BG";
-import LogoSmall from "../../../components/logo/small/logo_small";
-import Logo from "../../../components/logo/big/logo";
-import ResponsiveLogo from "../../../components/logo/responsiveLogo";
-import PillButton from "../../../components/Pill_button/pill";
+import LogoSmall from "../../../../components/logo/small/logo_small";
+import Logo from "../../../../components/logo/big/logo";
+import ResponsiveLogo from "../../../../components/logo/responsiveLogo";
+import PillButton from "../../../../components/Pill_button/pill";
 
 const ctaPillContent = () => {
   return (
