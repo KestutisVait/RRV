@@ -5,32 +5,52 @@ import { useSections } from "@/context/SectionsContext";
 
 export default function Main() {
 
-  // const [sectionInView, setSectionInView] = useState(1);
-  // const [nextSection, setNextSection] = useState(2);
-  // const [prevSection, setPrevSection] = useState(null);
   const { dataSections } = useSections();
 
-  const sectionInViewRef = useRef(1);
-  const nextRef = useRef(2);
-  const prevRef = useRef(null);
+  const [startY, setStartY] = useState(null);
 
-  // useEffect(() => { nextRef.current = nextSection }, [nextSection]);
-  // useEffect(() => { prevRef.current = prevSection }, [prevSection]);
+
+  const sectionInViewRef = useRef(0);
+  const nextRef = useRef(1);
+  const prevRef = useRef(null);
+  
+  // ------------------- HELPER FUCTION ----------------------- //
+  
+  const scrollToSection = (direction) => {
+    const sections = document.querySelectorAll("[data-section]");
+    if (!sections.length) return;
+
+    if (direction === "up") {
+      if (nextRef.current > sections.length - 1) return;
+      sections[nextRef.current]?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    } else if (direction === "down") {
+      if (prevRef.current < 0) return;
+      sections[prevRef.current]?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
 
   // ------------------- OBSERVER ----------------------- //
   
   useEffect(() => {
     const sections = document.querySelectorAll("[data-section]");
+    // console.log(sections);
     
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const id = parseInt(entry.target.id);
+            const id = parseInt(entry.target.dataset.section);
             sectionInViewRef.current = id;
             nextRef.current = id + 1;
             prevRef.current = id - 1;
-            // console.log(`Section ${parseInt(entry.target.id)} is in view`);
+            // console.log(`Section ${parseInt(sectionInViewRef.current)} is in view`);
           }
         });
       },
@@ -54,23 +74,14 @@ export default function Main() {
   // ------------------- KEY DOWN SNAPPING ----------------------- //
   
   useEffect(() => {
-    const sections = document.querySelectorAll("[data-section]");
     function handleKeydown(event) {
       if (event.key === "ArrowDown") {
-        if (nextRef.current > dataSections.length) return;
         event.preventDefault();
-        sections[nextRef.current -1]?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
+        scrollToSection("up"); // ArrowDown = scroll down = "up" to next section
       }
       if (event.key === "ArrowUp") {
-        if (prevRef.current < 1) return;
         event.preventDefault();
-        sections[prevRef.current -1]?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
+        scrollToSection("down"); // ArrowUp = scroll up = "down" to previous section
       }
     }
     
@@ -80,39 +91,50 @@ export default function Main() {
   });
   
   // ------------------- MOUSE WHEEL SNAPPING ----------------------- //
-
+  
   useEffect(() => {
     function handleMouseWheel(event) {
-      if (event.deltaY > 0) {
-        if (nextRef.current > dataSections.length) return;
-        document.getElementById(nextRef.current)?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      } else if (event.deltaY < 0) {
-        if (prevRef.current < 1) return;
-        document.getElementById(prevRef.current)?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
+      if (event.deltaY > 0) scrollToSection("up");
+      else if (event.deltaY < 0) scrollToSection("down");
     }
     
     window.addEventListener("wheel", handleMouseWheel);
     
     return () => window.removeEventListener("wheel", handleMouseWheel);
   });
-
-
-
+  
+  // ------------------- VERTICAL SWIPE SNAPPING ----------------------- //
+  
+  const handleTouchStart = (e) => {
+    setStartY(e.touches[0].clientY);
+  }; 
+  
+  const handleTouchEnd = (e) => {
+    if (startY === null) return;
+    
+    const endY = e.changedTouches[0].clientY;
+    const deltaY = endY - startY;
+    
+    if (deltaY > 100) scrollToSection("down"); // swipe down
+    else if (deltaY < -100) scrollToSection("up"); // swipe up
+    
+    setStartY(null);
+  };
+  
+  // ---------------------------------------- //
+  
   return (
-    <main className={styles.container}>
+    <main 
+      className={styles.wrapper}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {dataSections.map((section) => (
         <section
-        id={section.id}
+        id={section.href}
         key={section.id}
         className={styles.section}
-        data-section
+        data-section={section.id}
         >
           {section.label}
         </section>
