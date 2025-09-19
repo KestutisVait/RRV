@@ -1,41 +1,26 @@
 'use client';
-import { useEffect, useState } from "react";
-import axios from "axios";
+// import { useEffect, useState } from "react";
 import styles from "./nav.module.css";
+import { useSections } from "@/context/SectionsContext";
 
-export default function Example({ sections }) {
-    const [navItems, setNavItems] = useState([]);
+export default function Example() {
 
-    useEffect(() => {
-      const fetchNavItems = async () => {
-        try {
-          const response = await axios.get("http://localhost:3000/data/nav.json");
-          setNavItems(response.data);
-        } catch (error) {
-          console.error("Error fetching nav items:", error);
-        }
-      };
-  
-      fetchNavItems();
-    }, []);
+    const { dataSections } = useSections();
 
-    // console.log(sections[0]);
-    
-
-  return (
-    <div className={styles.wrapper}>
-        {navItems && navItems.map((item) => (
-            <div
-                className={styles.nav_item} 
-                key={item.id} 
-                onClick={() => {
-                    const section = document.getElementById(item.href);
-                    section?.scrollIntoView({ behavior: "smooth", block: "start" });
-                }}
-            >
-                {item.label}
-            </div>
-        ))}
-    </div>
-  );
+    return (
+        <div className={styles.wrapper}>
+            {dataSections && dataSections.map((item) => (
+                <div
+                    className={styles.nav_item} 
+                    key={item.id} 
+                    onClick={() => {
+                        const section = document.getElementById(item.href);
+                        section?.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }}
+                >
+                    {item.label}
+                </div>
+            ))}
+        </div>
+    );
 }

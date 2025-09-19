@@ -1,3 +1,4 @@
+'use client';
 import React from "react";
 import styles from "../logo.module.css"; 
 
@@ -59,7 +60,16 @@ export default function Logo({
   const scaledPath = scalePath(originalPath, scale);
 
   return (
-    <div  style={{ display: "flex", alignItems: "center" }}>
+    <div  
+      style={{ display: "flex", alignItems: "center" }}
+        onClick={() =>
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          })
+        }
+      
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox={`${scaledViewBox.x} ${scaledViewBox.y} ${scaledViewBox.width} ${scaledViewBox.height}`}
