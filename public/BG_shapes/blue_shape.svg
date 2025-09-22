@@ -1,0 +1,14 @@
+<svg 
+  width="41" 
+  height="24" 
+  viewBox="0 0 41 24" 
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <linearGradient id="gradient" x1="1" x2="0" y1="0.6415" y2="0.3585">
+      <stop offset="0" stop-color="#FFCC00"/>
+      <stop offset="1" stop-color="#E39700"/>
+    </linearGradient>
+  </defs>
+  <path d="M41 12L34 24H0V0H34L41 12Z" fill="url(#gradient)"/>
+</svg>

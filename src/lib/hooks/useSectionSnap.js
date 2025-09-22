@@ -86,22 +86,41 @@ export function useSectionSnap() {
   
   // ------------------- MOUSE WHEEL SNAPPING ----------------------- //
   
-  useEffect(() => {
-    function handleMouseWheel(event) {
+useEffect(() => {
+  let wheelLocked = false;
+  let wheelTimeout;
+
+  function handleMouseWheel(event) {
+    event.preventDefault();
+
+    // ignore tiny deltas
+    if (Math.abs(event.deltaY) < 10) return;
+
+    if (!wheelLocked) {
+      // Determine direction
       if (event.deltaY > 0) scrollToSection("up");
-      else if (event.deltaY < 0) scrollToSection("down");
+      else scrollToSection("down");
+
+      wheelLocked = true;
     }
-    
-    window.addEventListener("wheel", handleMouseWheel);
-    
-    return () => window.removeEventListener("wheel", handleMouseWheel);
-  });
+
+    // reset lock after 200ms of quiet
+    clearTimeout(wheelTimeout);
+    wheelTimeout = setTimeout(() => {
+      wheelLocked = false;
+    }, 100);
+  }
+
+  window.addEventListener("wheel", handleMouseWheel, { passive: false });
+  return () => window.removeEventListener("wheel", handleMouseWheel);
+}, []);
   
   // ------------------- VERTICAL SWIPE SNAPPING ----------------------- //
   
   const handleTouchStart = (e) => {
     setStartY(e.touches[0].clientY);
   }; 
+    // ------------------- VERTICAL SWIPE SNAPPING ----------------------- //
   
   const handleTouchEnd = (e) => {
     if (startY === null) return;
