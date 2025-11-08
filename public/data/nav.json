@@ -11,13 +11,13 @@
   },
   {
     "id": 2,
-    "label": "Produktai",
+    "label": "Produktai ir paslaugos",
     "href": "produktai"
   },
   {
     "id": 3,
-    "label": "Tinklaraštis",
-    "href": "tinklarastis"
+    "label": "Atsiliepimai",
+    "href": "atsiliepimai"
   },
   {
     "id": 4,

@@ -1,0 +1,19 @@
+.wrapper {
+  justify-content: start;
+  align-items: center;
+  position: relative;
+  background-color: var(--yellow);
+}
+.mask_services {
+  transform: rotate(180deg);
+  margin-left: -375px;
+}
+
+
+
+@media screen and (max-width: 480px) {
+  .bg_shape {
+    top: -15px;
+    right: 120px;
+  }
+}

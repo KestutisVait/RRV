@@ -1,3 +1,14 @@
+@keyframes textAnimation {
+  0% {
+    opacity: 0;
+    scale: 0.5;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
 .wrapper {
   position: relative;
   display: flex; 
@@ -7,17 +18,29 @@
   z-index: 4; 
   margin-left: 10%;
   width: 100%;
+  opacity: 0;
+  transform: translate(-10%, -30%) scale(0.8, 0.7);
+  transition: 
+    opacity 0.2s ease-in-out, 
+    transform 0.2s ease-in-out;
+}
+.wrapper.animate{
+  opacity: 1;
+  transform: translate(0, 0) scale(1, 1);
+  transition: 
+    opacity 1s cubic-bezier( 0.34, 0.95, 0.6, 1 ), 
+    transform 0.5s cubic-bezier( 0.34, 0.95, 0.6, 1 );
 }
 .home_logo_wrapper{
   display:flex;
   align-items: start;
   flex-wrap: wrap;
-  color:#042601;
 }
 .cta_hero_name {
   display: flex;
   flex-direction: column;
   margin-left: 10px;
+  color: var(--darkText);
 }
 .cta_hero_Firstname {
     font-size: 20px;
@@ -36,7 +59,7 @@
   flex-direction: column;
   font-size: 80px;
   font-weight: 400;
-  color:#042601;
+  color: var(--lightText);
   line-height: 60px;
   margin: 5rem 0 1rem 0;
 }

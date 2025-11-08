@@ -1,58 +1,10 @@
-.about_section{
+.wrapper{
     position: relative;
     display: flex;
     justify-content: start;
     align-items: start;
 }
-.about_section article{
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: start;
-    width: 50%;
-    margin: 5rem 0 0 5%;
-    /* background-color: rgb(0, 255, 255, 0.5); */
-}
-.hero_section {
-    position: absolute;
-    top: 0;
-    right: -352px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 640px;
-    width: 800px;
-    background-color: rgb(0, 0, 255, 0.5);
-    margin-top: 20px;
-    transition: 0.5s ease-in-out;
-
-      /* Mask applied to the whole section */
-    mask-image: url('/mask_about.svg');
-    mask-repeat: no-repeat;
-    mask-size: contain;
-    mask-position: 700px center;
-
-    -webkit-mask-image: url('/mask_about.svg');
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-size: contain;
-    -webkit-mask-position: 700px center;
-
-}
-.animate_mask_in{
-    mask-position: 0 center;
-    -webkit-mask-position: 0 center;
-    /* transform: translateX(-465px); */
-}
-.hero_bg{
-    position: absolute; 
-    left: 0; 
-    height:780;
-    width: auto;  
-    z-index: 1;
-}
-.hero_img{
-   position: absolute;
-   top: 0;
-   left: 70px;
-   z-index: 2; 
+.stripes_wrapper{
+    height: 100%;
+    transform: rotate(180deg);
 }

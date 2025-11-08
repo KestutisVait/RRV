@@ -1,0 +1,14 @@
+.wrapper {
+  width: 100%;
+  height: 710PX;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  background-color: blueviolet;
+  margin-top: 10px;
+}
+.wrapper > button {
+  cursor: pointer;
+  z-index: 5;
+}

@@ -10,7 +10,7 @@ import Cta from "./articles/cta/cta";
 export default function HomeSection({ id, index }) {
 
   return (
-    <div  
+    <section  
       id={id || "home"} 
       className={`${styles.section} ${homeStyles.wrapper}`}
       data-section={index}  
@@ -23,9 +23,6 @@ export default function HomeSection({ id, index }) {
         height={700} 
         fadeHeight={100}
       />
-      <Cta />
-      <Hero />
-      <LeftShape />
       <Image 
         className={homeStyles.bg_shape}
         src="/BG_shapes/yellow_polygon.svg" 
@@ -35,6 +32,9 @@ export default function HomeSection({ id, index }) {
         // sizes="100vw" 
         style={{ width: 'auto', height: '1600px' }}
       />
-    </div>
+      <Cta />
+      <Hero />
+      <LeftShape />
+    </section>
   );
 }

@@ -1,8 +1,12 @@
-<svg 
-  width="41" 
-  height="24" 
-  viewBox="0 0 41 24" 
-  xmlns="http://www.w3.org/2000/svg"
->
-  <path d="M0 12L7 24H41V0H7L0 12Z" fill="#9d00ff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="847" height="729" viewBox="0 0 847 729" fill="none">
+  <path
+    d="M417.157 723C421.776 731 433.323 731 437.942 723L844.974 18C849.593 10 843.819 0 834.581 0H12.018C2.78 0 -2.993 10 1.625 18L417.157 723Z"
+    fill="url(#gradient)"
+  />
+  <defs>
+    <linearGradient id="gradient" x1="634" y1="0" x2="423.3" y2="729" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A370C2" />
+      <stop offset="0.506" stop-color="#9D00FF" />
+    </linearGradient>
+  </defs>
 </svg>

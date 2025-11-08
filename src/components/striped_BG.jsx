@@ -2,7 +2,7 @@ import React from "react";
 
 const StripedSVGPattern = ({
   angle = 45,
-  stripeColor = "#1a202c",
+  stripeColor = "rgba(26, 32, 44, 1)",
   stripeThickness = 1,
   gap = 6,
   width = 300,

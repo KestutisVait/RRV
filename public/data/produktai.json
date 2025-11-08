@@ -1,0 +1,26 @@
+[
+  {
+    "index": 0,
+    "price": 89,
+    "pricePerHour": false,
+    "poster": "/product_img/4.png",
+    "shortInfo": "30 dienų kursas norintiems dėti pirmus žingsnius į savęs pažinimą",
+    "desription": "kazkoks ilgas aprasymas"
+  },
+  {
+    "index": 1,
+    "price": 89,
+    "pricePerHour": false,
+    "poster": "/product_img/2.png",
+    "shortInfo": "cia bus kazkoks kitas kursas",
+    "desription": "kazkoks ilgas aprasymas"
+  },
+  {
+    "index": 2,
+    "price": 20,
+    "pricePerHour": true,
+    "poster": "/product_img/1.png",
+    "shortInfo": "cia bus kazkoks kitas kursas",
+    "desription": "kazkoks ilgas aprasymas"
+  }
+]

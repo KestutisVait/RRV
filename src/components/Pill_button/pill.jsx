@@ -1,17 +1,14 @@
 import styles from "./pill.module.css";
 import Link from "next/link";
 
-export default function PillButton({ backgroundColor, buttonContent, destination }) {
+export default function PillButton({ textColor, backgroundColor, buttonContent, destination, onClickAction }) {
     const BgColor = backgroundColor;
 
   return (
     <div 
         className={styles.wrapper} 
-        style={{ "--BgColor": BgColor }} 
-        onClick={() => {
-            const section = document.getElementById(destination);
-            section?.scrollIntoView({ behavior: "smooth" })
-        }}>
+        style={{ "--BgColor": BgColor, color: textColor }} 
+        onClick={onClickAction}>
       {buttonContent}
     </div>
   );

@@ -11,5 +11,8 @@
 }
 
 @media screen and (max-width: 480px) {
-
+  .bg_shape {
+    top: -15px;
+    right: 120px;
+  }
 }

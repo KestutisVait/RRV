@@ -1,0 +1,66 @@
+.wrapper{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  border-radius: 10px;
+  padding: 10px;
+  /* border: 1px solid black; */
+  background-color: var(--lightText);
+
+}
+.poster{
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.cta{
+  /* flex-grow: 1; */
+  /* height: 100%; */
+  display: flex;
+  justify-content: end;
+  width: 100%;
+  margin: 10px 0 20px 0;
+}
+.price {
+  grid-area: price;
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: -2px;
+  line-height: 30px;
+  justify-self: end;
+  text-align: end;
+}
+.currency {
+  font-size: 0.7em;
+  vertical-align: top;
+  top: -2px;
+  position: relative;
+}
+.short_info { 
+  grid-area: info;
+  line-height: 18px;
+}
+.buy_pill{
+  grid-area: buy;
+  align-self: end;
+  justify-self: center;
+  font-size: 15px;
+  margin: auto 20px;
+}
+/* .pill_more{
+  grid-area: more;
+  justify-self: start;
+  margin-top: 10px;
+  color: var(--lightText);
+} */
+.pills_wrapper{
+  margin: auto 0 20px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}

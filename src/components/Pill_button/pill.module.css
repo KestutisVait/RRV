@@ -6,11 +6,12 @@
     border-radius: 5rem;
     padding: 0.2rem 2rem;
     cursor: pointer;
-    margin: 0 0 0 15%;
+    transition: scale 0.1s ease-in-out;
 }  
+.wrapper:hover {
+    scale: 1.05;
+}
 
 @media screen and (max-width: 480px) {
-    .wrapper {
-        margin: 0 0 0 10%;
-    }
+
 }
