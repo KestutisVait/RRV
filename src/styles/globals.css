@@ -3,8 +3,9 @@
   --foreground: #171717;
   --purple: #9d00ff;
   --yellow: #FFC000;
-  --lightText: #F9FFF7;
+  --lightText:#F9FFF7 ;
   --darkText:#042601;
+  --red: #bc1417;
 }
 
 html,

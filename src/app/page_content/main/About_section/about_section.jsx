@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import Hero from "./articles/hero/hero"
 import MovingShape from "./articles/moving_shape/moving_shape"
 import StripedSVGPattern from "@/components/striped_BG";
+import Introduction from "./articles/introduction/introduction"
 
 export default function AboutSection({ id, index }) {
 
@@ -15,6 +16,7 @@ export default function AboutSection({ id, index }) {
       className={`${styles.section} ${aboutStyles.wrapper}`}
       data-section={index}
     >
+      <Introduction/>
       <div className={aboutStyles.stripes_wrapper}>
         <StripedSVGPattern 
           angle={210} 
