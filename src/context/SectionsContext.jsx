@@ -11,7 +11,7 @@ export function SectionsProvider({ children }) {
   useEffect(() => {
     async function fetchSections() {
       try {
-        const res = await axios.get("http://localhost:3000/data/nav.json");
+        const res = await axios.get("https://rrv.onrender.com//data/nav.json");
         const data = res.data;  
 
         setDataSections(data);
