@@ -12,7 +12,7 @@ export function ProductProvider({ children }) {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const res = await axios.get("http://localhost:3000/data/produktai.json");
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/data/produktai.json`)
         const data = res.data;  
         
         setDataProducts(data);

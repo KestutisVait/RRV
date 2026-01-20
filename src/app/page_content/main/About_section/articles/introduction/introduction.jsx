@@ -12,7 +12,7 @@ export default function Introduction() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/data/introduction.json");
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/data/introduction.json`);
         console.log(res.data);
         setData(res.data);
       } catch (error) {
