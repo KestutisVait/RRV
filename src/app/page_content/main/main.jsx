@@ -1,7 +1,7 @@
 'use client';
 import styles from "./main.module.css";
 import { useSections } from "@/context/SectionsContext";
-import { useSectionSnap } from "@/lib/hooks/useSectionSnap";
+// import { useSectionSnap } from "@/lib/hooks/useSectionSnap";
 import HomeSection from "./Home_section/home_section";
 import AboutSection from "./About_section/about_section";
 import ProductsSection from "./Products_section/products_section";
@@ -13,15 +13,15 @@ export default function Main() {
   const { dataSections } = useSections();
   // console.log(dataSections);
   
-  const { handleTouchStart, handleTouchEnd } = useSectionSnap();
+  // const { handleTouchStart, handleTouchEnd } = useSectionSnap();
 
   if (!dataSections || dataSections.length === 0) return null;
 
   return (
     <main 
       className={styles.wrapper}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
+      // onTouchStart={handleTouchStart}
+      // onTouchEnd={handleTouchEnd}
     >
       {/* {dataSections.map((section) => (
         <section
