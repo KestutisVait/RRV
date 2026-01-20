@@ -34,7 +34,7 @@
 
 @media screen and (max-width: 480px) {
     .wrapper{
-        touch-action: none;
+        /* touch-action: none; */
     }
     /* .section{
         scroll-snap-align: start;
