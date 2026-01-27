@@ -1,47 +1,62 @@
 'use client';
+
 import Image from "next/image";
-import { useEffect } from "react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import styles from "./hero.module.css";
 
 export default function Hero() {
+  const ref = useRef(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
 
-      const styles = document.documentElement.style;
-      // const offsetX = scrollY * 0.3;
-      const heroImgOffset = scrollY * 0.5;
-      const heroBgOffset = scrollY * 0.2;
-      const heroShapeOffset = - heroImgOffset;
+  // Parallax mappings (tweak values to taste)
+  const heroImgY = useTransform(scrollYProgress, [0, 1], [-100, 200]);
+  const heroBgY = useTransform(scrollYProgress, [0, 1], [0, 60]);
+  const heroShapeY = useTransform(scrollYProgress, [0, 1], [0, -120]);
 
-      const variables = {
-        // '--svg-offset-x': `${offsetX}px`,
-        '--hero_img_offset': `${heroImgOffset}px`,
-        '--hero_bg_offset': `${heroBgOffset}px`,
-        '--hero_shape_offset': `${heroShapeOffset}px`
-      };
-
-      for (const [key, value] of Object.entries(variables)) {
-        styles.setProperty(key, value);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-  
   return (
-      <article className={styles.wrapper}>
-        <div className={styles.hero_img}>
-          <Image src="/hero.webp" alt="hero" width="551" height="826" style={{ filter: 'brightness(1.2)', objectFit: 'cover' }}/>
-        </div>
-        <div className={styles.hero_bg}>
-          <Image src="/hero_bg.webp" alt="hero" width="684" height="1026" />
-        </div>
-        <div className={styles.hero_bg_shape}>
-          <Image src="/hero_bg_shape.svg" alt="hero" width="600" height="600" />
-        </div>
-      </article>
+    <article ref={ref} className={styles.wrapper}>
+      <motion.div
+        className={styles.hero_img}
+        style={{ y: heroImgY }}
+      >
+        <Image
+          src="/hero.webp"
+          alt="hero"
+          width={551}
+          height={826}
+          style={{ filter: "brightness(1.2)", objectFit: "cover" }}
+          priority
+        />
+      </motion.div>
+
+      <motion.div
+        className={styles.hero_bg}
+        style={{ y: heroBgY }}
+      >
+        <Image
+          src="/hero_bg.webp"
+          alt="hero background"
+          width={684}
+          height={1026}
+        />
+      </motion.div>
+
+      <motion.div
+        className={styles.hero_bg_shape}
+        style={{ y: heroShapeY }}
+      >
+        <Image
+          src="/hero_bg_shape.svg"
+          alt="hero shape"
+          width={600}
+          height={600}
+        />
+      </motion.div>
+    </article>
   );
 }
