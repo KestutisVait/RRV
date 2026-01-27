@@ -1,37 +1,51 @@
-'use client'
+'use client';
+
 import styles from "./left_shape.module.css";
-import { useEffect } from "react";
 import Image from "next/image";
 import Logo from "@/components/logo/big/logo";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function LeftShape() {
+  const ref = useRef(null);
 
-useEffect(() => {
-  const handleScroll = () => {
-    const scrollY = window.scrollY;
-    const offsetX = scrollY * 0.3;
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
 
-    document.documentElement.style.setProperty("--offset-x", `${offsetX}px`);
-  };
+  // Horizontal parallax (centered so layout never shifts)
+  const strength = 120;
 
-  window.addEventListener("scroll", handleScroll);
-  return () => window.removeEventListener("scroll", handleScroll);
-}, []);
-
+  const x = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [-strength / 2, strength / 2]
+  );
 
   return (
-    <article className={styles.wrapper}>
-      
-      <div className={styles.logo_wrapper }>
-        <Logo 
-          height ={25} 
-          colorCircle= 'var(--lightText)' 
+    <article ref={ref} className={styles.wrapper}>
+      {/* <motion.div
+        className={styles.logo_wrapper}
+        style={{ x }}
+      >
+        <Logo
+          height={25}
+          colorCircle="var(--lightText)"
           colorTriangle="var(--lightText)"
           marginCircle={-1}
           marginTriangle={-3}
         />
-      </div> 
-      <Image src="/BG_shapes/red_triangle.svg" alt="hero" width="554" height="481" />
+      </motion.div> */}
+
+      <motion.div style={{ x }}>
+        <Image
+          src="/BG_shapes/red_triangle.svg"
+          alt="red triangle"
+          width={554}
+          height={481}
+        />
+      </motion.div>
     </article>
-  )
+  );
 }
