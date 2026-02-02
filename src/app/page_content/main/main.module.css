@@ -3,12 +3,13 @@
     flex-direction: column;
     overflow-x: hidden;
     overflow-y: scroll;
-    height: 100vh;
+    height: 100dvh;
     scroll-snap-type: y proximity;
     scroll-behavior: smooth;
+     -webkit-overflow-scrolling: touch;
 }
 .section{
-    flex: 0 0 100vh;
+    flex: 0 0 100dvh;
     width:100%;
     padding: 40px 0 0 0;
     position:relative;
