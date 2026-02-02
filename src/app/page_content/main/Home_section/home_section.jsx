@@ -12,7 +12,7 @@ export default function HomeSection({ id, index }) {
   return (
     <section  
       id={id || "home"} 
-      className={`${styles.section} ${homeStyles.wrapper}`}
+      className={`section ${styles.section} ${homeStyles.wrapper}`}
       data-section={index}  
     >
       <StripedSVGPattern 

@@ -1,37 +1,9 @@
 .page {
   display: flex;
   flex-direction: column;
-  /* overflow-y: scroll; */
 }
-/* .sections_wrapper {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-.section {
-  width: 100vw;
-  height: 100vh;
-  position:relative;
-  display: flex;
-}
-.bg_shape {
-  position: absolute;
-  top: -1px;
-  right: 17px;
-  z-index: -1;
-}
- */
 
 @media screen and (max-width: 480px) {
-  /* .section {
-    height: 90vh;
-  } */
-  /* .bg_shape {
-    position: absolute;
-    top: -5px;
-    right: 110px;
-    z-index: -1;
-  } */
   
 }
 
