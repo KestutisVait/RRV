@@ -8,7 +8,11 @@ import ProductsSection from "./Products_section/products_section";
 // import { ProductProvider } from "@/context/ProductsContext";
 import Carousel from "@/components/carousel/carousel";
 
+// import { useSmoothSectionScroll } from "@/lib/hooks/useSmoothSectionScroll";
+
 export default function Main() {
+
+  // useSmoothSectionScroll();
 
   const { dataSections } = useSections();
   // console.log(dataSections);

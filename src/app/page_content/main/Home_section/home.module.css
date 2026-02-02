@@ -2,6 +2,7 @@
   justify-content: start;
   align-items: center;
   position: relative;
+  scroll-snap-align: start;
 }
 .bg_shape {
   position: absolute;
