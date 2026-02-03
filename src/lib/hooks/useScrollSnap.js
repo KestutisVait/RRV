@@ -20,20 +20,24 @@ export function useScrollSnap() {
   const touchStartTime = useRef(null);
   const wasFastSwipe = useRef(false);
   const swipeDirection = useRef(null);
-  const SWIPE_FAST_THRESHOLD = 0.6;
+
+  const SWIPE_FAST_VELOCITY = 0.5; // px/ms
+  const SWIPE_FAST_DISTANCE = 50;  // px
 
   // ───────── Section tracking ─────────
   const sectionInViewRef = useRef(0);
   const nextRef = useRef(1);
   const prevRef = useRef(null);
 
-  // ───────── Helper: handle touch start ─────────
+  // ───────── rAF throttling ─────────
+  const ticking = useRef(false);
+
+  // ───────── Touch handlers ─────────
   const handleTouchStart = (e) => {
     touchStartY.current = e.touches[0].clientY;
     touchStartTime.current = performance.now();
   };
 
-  // ───────── Helper: handle touch end ─────────
   const handleTouchEnd = (e) => {
     if (touchStartY.current === null) return;
 
@@ -43,21 +47,27 @@ export function useScrollSnap() {
     const dy = endY - touchStartY.current;
     const dt = endTime - touchStartTime.current;
 
-    const swipeVelocity = Math.abs(dy / dt); // px/ms
-    wasFastSwipe.current = swipeVelocity > SWIPE_FAST_THRESHOLD;
+    const velocity = Math.abs(dy / dt); // px/ms
+    const distance = Math.abs(dy);
+
+    // iOS-style fast swipe detection
+    wasFastSwipe.current =
+      velocity > SWIPE_FAST_VELOCITY && distance > SWIPE_FAST_DISTANCE;
+
     swipeDirection.current = dy < 0 ? 'down' : 'up';
 
     console.log(
       wasFastSwipe.current ? 'FAST swipe' : 'SLOW swipe',
       swipeDirection.current,
-      swipeVelocity.toFixed(2)
+      velocity.toFixed(2),
+      distance
     );
 
     touchStartY.current = null;
     touchStartTime.current = null;
   };
 
-  // ───────── Helper: calculate average velocity ─────────
+  // ───────── Velocity tracking ─────────
   const calculateVelocity = (y, now) => {
     if (lastY.current === null) {
       lastY.current = y;
@@ -85,7 +95,6 @@ export function useScrollSnap() {
     return avgVelocity;
   };
 
-  // ───────── Helper: reset snap ─────────
   const resetSnap = () => {
     hasSnapped.current = false;
     wasFastSwipe.current = false;
@@ -93,7 +102,7 @@ export function useScrollSnap() {
     velocityHistory.current = [];
   };
 
-  // ───────── Helper: scroll to section with organic momentum ─────────
+  // ───────── Snap & scroll ─────────
   const scrollToSection = (direction, currentVelocity = 0) => {
     const sections = document.querySelectorAll('[data-section]');
     if (!sections.length) return;
@@ -110,27 +119,26 @@ export function useScrollSnap() {
     const currentY = window.scrollY;
     const targetY = sections[targetIndex].offsetTop;
 
-    // Organic spring: start at current position + small offset in swipe direction
-    // Velocity scaled to px/s
-const initialVelocity = currentVelocity * 1000; // px/s
-const velocityScale = 0.5; // reduce start speed
-const offset = initialVelocity * 0.01; // smaller pickup
-const startY = currentY + offset;
+    // Softened velocity for organic feel
+    const velocityScale = 0.5; // start slower than actual swipe
+    const initialVelocity = currentVelocity * 1000 * velocityScale; // px/s
+    const offset = initialVelocity * 0.02; // tiny buffer in swipe direction
+    const startY = currentY + offset;
 
-animate(startY, targetY, {
-  type: 'spring',
-  stiffness: 120,
-  damping: 20,
-  velocity: initialVelocity * velocityScale,
-  onUpdate: (latest) => window.scrollTo(0, latest),
-});
+    animate(startY, targetY, {
+      type: 'spring',
+      stiffness: 120,
+      damping: 20,
+      velocity: initialVelocity,
+      onUpdate: (latest) => window.scrollTo(0, latest),
+    });
+
     // Update section refs
     sectionInViewRef.current = targetIndex;
     nextRef.current = sectionInViewRef.current + 1;
     prevRef.current = sectionInViewRef.current - 1;
   };
 
-  // ───────── Helper: check if snap should fire ─────────
   const checkSnap = (avgVelocity) => {
     if (
       avgVelocity !== null &&
@@ -145,19 +153,27 @@ animate(startY, targetY, {
     }
   };
 
-  // ───────── Effect: attach listeners ─────────
+  // ───────── Effect ─────────
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
     const onScroll = () => {
-      const now = performance.now();
-      const y = window.scrollY;
+      if (!ticking.current) {
+        ticking.current = true;
+        requestAnimationFrame(() => {
+          const now = performance.now();
+          const y = window.scrollY;
 
-      const avgVelocity = calculateVelocity(y, now);
-      checkSnap(avgVelocity);
+          const avgVelocity = calculateVelocity(y, now);
+          checkSnap(avgVelocity);
 
-      clearTimeout(scrollEndTimeout.current);
-      scrollEndTimeout.current = setTimeout(resetSnap, SCROLL_END_DELAY);
+          // Reset after scroll ends
+          clearTimeout(scrollEndTimeout.current);
+          scrollEndTimeout.current = setTimeout(resetSnap, SCROLL_END_DELAY);
+
+          ticking.current = false;
+        });
+      }
     };
 
     window.addEventListener('touchstart', handleTouchStart, { passive: true });
