@@ -7,45 +7,27 @@ import AboutSection from "./About_section/about_section";
 import ProductsSection from "./Products_section/products_section";
 // import { ProductProvider } from "@/context/ProductsContext";
 import Carousel from "@/components/carousel/carousel";
-// import { useSmoothSectionScroll } from "@/lib/hooks/useSmoothSectionScroll";
 import { useRef, useEffect, useState } from 'react';
-// import SmoothScrollProvider from "@/utils/SmoothScrollProvider";
 
-import { useObserverSnap } from "@/lib/hooks/useScrollSnap";
+// import { useObserverSnap } from "@/lib/hooks/useScrollSnap";
 
 export default function Main() {
 
   const [sections, setSections] = useState([]);
   const mainRef = useRef(null);
   const { dataSections } = useSections();
-  //  useSmoothSectionScroll();
   // console.log(dataSections);
-  
-  // const { handleTouchStart, handleTouchEnd } = useSectionSnap();
 
-  
-  useObserverSnap();
-  console.log(sections);
-   // pass the elements to the hook
-  // useEffect(() => {
-  //   if (mainRef.current) {
-  //     const secs = Array.from(mainRef.current.querySelectorAll('[data-section]'));
-  //     console.log(secs);
-      
-  //     setSections(secs);
-  //   }
-  // }, []);
+  // useObserverSnap();
+  // console.log(sections);
   
   if (!dataSections || dataSections.length === 0) return null;
 
   return (
-    //  <SmoothScrollProvider containerRef={mainRef}>
       <main 
         id="main"
         ref={mainRef}
         className={styles.wrapper}
-        // onTouchStart={handleTouchStart}
-        // onTouchEnd={handleTouchEnd}
         >
         {/* {dataSections.map((section) => (
           <section
@@ -96,6 +78,5 @@ export default function Main() {
           </section>
 
       </main>
-    // </SmoothScrollProvider>
   );
 }

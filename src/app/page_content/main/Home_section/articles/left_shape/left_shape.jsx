@@ -9,19 +9,12 @@ import { motion, useScroll, useTransform } from "framer-motion";
 export default function LeftShape() {
   const ref = useRef(null);
 
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
+  const { scrollY } = useScroll();
 
   // Horizontal parallax (centered so layout never shifts)
   const strength = 120;
 
-  const x = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [-strength / 2, strength / 2]
-  );
+  const x = useTransform(scrollY, [0, 1000], [-strength / 2, strength / 2]);
 
   return (
     <article ref={ref} className={styles.wrapper}>

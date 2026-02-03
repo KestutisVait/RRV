@@ -81,7 +81,7 @@ export function useObserverSnap() {
 
     const setupObserver = () => {
       const sections = document.querySelectorAll('[data-section]');
-      console.log('Observed sections:', sections);
+      // console.log('Observed sections:', sections);
 
       if (!sections.length) return;
 
