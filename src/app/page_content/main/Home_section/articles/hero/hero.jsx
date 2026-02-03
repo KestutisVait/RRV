@@ -8,15 +8,11 @@ import styles from "./hero.module.css";
 export default function Hero() {
   const ref = useRef(null);
 
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-
+const { scrollY } = useScroll();
   // Parallax mappings (tweak values to taste)
-  const heroImgY = useTransform(scrollYProgress, [0, 1], [-100, 200]);
-  const heroBgY = useTransform(scrollYProgress, [0, 1], [0, 60]);
-  const heroShapeY = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const heroImgY = useTransform(scrollY, [0, 1000], [0, 400]);
+  const heroBgY = useTransform(scrollY, [0, 1000], [0, 260]);
+  const heroShapeY = useTransform(scrollY, [0, 1000], [0, -120]);
 
   return (
     <article ref={ref} className={styles.wrapper}>

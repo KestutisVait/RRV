@@ -3,18 +3,22 @@
 import styles from "./left_shape.module.css";
 import Image from "next/image";
 import Logo from "@/components/logo/big/logo";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function LeftShape() {
   const ref = useRef(null);
 
+  const { scrollYProgress } = useScroll();
   const { scrollY } = useScroll();
+  const vh = window.innerHeight;
 
   // Horizontal parallax (centered so layout never shifts)
-  const strength = 120;
+  // const strength = 120;
 
-  const x = useTransform(scrollY, [0, 1000], [-strength / 2, strength / 2]);
+  const x = useTransform( scrollYProgress, [0, 1], [0, -420]);
+  const y = useTransform( scrollYProgress, [0, 1], [0, 700]);
+  
 
   return (
     <article ref={ref} className={styles.wrapper}>
@@ -31,7 +35,7 @@ export default function LeftShape() {
         />
       </motion.div> */}
 
-      <motion.div style={{ x }}>
+      <motion.div style={{ x, y }}>
         <Image
           src="/BG_shapes/red_triangle.svg"
           alt="red triangle"

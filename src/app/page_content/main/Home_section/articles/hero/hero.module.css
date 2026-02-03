@@ -22,8 +22,8 @@
 
 .hero_img {
   position: absolute;
-  top: 190px;
-  right: -60px;
+  top: 90px;
+  right: -80px;
   width: 100%;
   z-index: 3;
   filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.3));
