@@ -8,12 +8,16 @@ import ProductsSection from "./Products_section/products_section";
 // import { ProductProvider } from "@/context/ProductsContext";
 import Carousel from "@/components/carousel/carousel";
 // import { useSmoothSectionScroll } from "@/lib/hooks/useSmoothSectionScroll";
-import { useRef } from 'react';
-import SmoothScrollProvider from "@/utils/SmoothScrollProvider";
+// import { useRef } from 'react';
+// import SmoothScrollProvider from "@/utils/SmoothScrollProvider";
+
+import { useScrollSnap } from "@/lib/hooks/useScrollSnap";
 
 export default function Main() {
-  
-  const mainRef = useRef(null);
+
+  useScrollSnap();
+
+  // const mainRef = useRef(null);
   const { dataSections } = useSections();
   //  useSmoothSectionScroll();
   // console.log(dataSections);
@@ -23,9 +27,10 @@ export default function Main() {
   if (!dataSections || dataSections.length === 0) return null;
 
   return (
-     <SmoothScrollProvider containerRef={mainRef}>
+    //  <SmoothScrollProvider containerRef={mainRef}>
       <main 
-        ref={mainRef}
+        id="main"
+        // ref={mainRef}
         className={styles.wrapper}
         // onTouchStart={handleTouchStart}
         // onTouchEnd={handleTouchEnd}
@@ -79,6 +84,6 @@ export default function Main() {
           </section>
 
       </main>
-    </SmoothScrollProvider>
+    // </SmoothScrollProvider>
   );
 }

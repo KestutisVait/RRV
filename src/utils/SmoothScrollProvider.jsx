@@ -1,68 +1,78 @@
-'use client';
+// 'use client';
 
-import { useEffect } from 'react';
-import Lenis from '@studio-freight/lenis';
+// import { useEffect } from 'react';
+// import Lenis from '@studio-freight/lenis';
 
-export default function SmoothScrollProvider({ containerRef, children }) {
-  useEffect(() => {
-    if (!containerRef?.current) return;
+// export default function SmoothScrollProvider({ containerRef, children }) {
+//   useEffect(() => {
+//     if (!containerRef?.current) return;
 
-    const container = containerRef.current;
+//     const container = containerRef.current;
 
-    const lenis = new Lenis({
-      duration: 0.9,
-      easing: (t) => t,
-      smooth: true,
-      smoothTouch: true,
-      touchMultiplier: 1.2,
-      direction: 'vertical',
-      gestureOrientation: 'vertical',
-    });
+//     const lenis = new Lenis({
+//       duration: 0.9,
+//       easing: (t) => t,
+//       smooth: true,
+//       smoothTouch: true,
+//       touchMultiplier: 1.2,
+//       direction: 'vertical',
+//       gestureOrientation: 'vertical',
+//     });
 
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
+//     function raf(time) {
+//       lenis.raf(time);
+//       requestAnimationFrame(raf);
+//     }
+//     requestAnimationFrame(raf);
 
-    // 👇 IMPORTANT: query ONLY inside <main>
-    const sections = container.querySelectorAll('.section');
-    console.log(sections);
+//     // 👇 IMPORTANT: query ONLY inside <main>
+//     const sections = container.querySelectorAll('.section');
+//     console.log(sections);
     
 
-    if (!sections.length) return;
+//     if (!sections.length) return;
 
-    let snapTimeout;
+//     let snapTimeout;
 
-    lenis.on('scroll', ({ scroll }) => {
-      clearTimeout(snapTimeout);
+//     let isTouch = false;
 
-      snapTimeout = setTimeout(() => {
-        let closest = sections[0];
-        let minDistance = Math.abs(
-          sections[0].offsetTop - scroll
-        );
+//     window.addEventListener('touchstart', () => {
+//       console.log("touched");
+      
+//       isTouch = true;
+//     }, { passive: true });
 
-        sections.forEach((section) => {
-          const distance = Math.abs(section.offsetTop - scroll);
-          if (distance < minDistance) {
-            minDistance = distance;
-            closest = section;
-          }
-        });
+//     window.addEventListener('wheel', () => {
+//       isTouch = false;
+//     }, { passive: true });
 
-        lenis.scrollTo(closest, {
-          duration: 1.1,
-          easing: (t) => 1 - Math.pow(1 - t, 3), // easeOut
-        });
-      }, 120); // snap AFTER user stops
-    });
 
-    return () => {
-      clearTimeout(snapTimeout);
-      lenis.destroy();
-    };
-  }, [containerRef]);
+//     lenis.on('scroll', ({ scroll }) => {
+//       // if (isTouch) return; // 🚫 NO SNAP ON TOUCH
 
-  return children;
-}
+//       clearTimeout(lenis.snapTimeout);
+//       lenis.snapTimeout = setTimeout(() => {
+//         let closest = sections[0];
+//         let distance = Math.abs(closest.offsetTop - scroll);
+
+//         sections.forEach((sec) => {
+//           const d = Math.abs(sec.offsetTop - scroll);
+//           if (d < distance) {
+//             closest = sec;
+//             distance = d;
+//           }
+//         });
+
+//         lenis.scrollTo(closest, { duration: 0.5 });
+//       }, 120);
+//     });
+
+
+//     return () => {
+//       clearTimeout(snapTimeout);
+//       lenis.destroy();
+//     };
+//   }, [containerRef]);
+
+//   return children;
+// }
