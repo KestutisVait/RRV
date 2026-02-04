@@ -26,8 +26,8 @@ export default function LeftShape() {
   const y = useTransform(scrollYProgress, [0, 1], [0, targetPx]);
   const x = useTransform(scrollYProgress, [0, 1], [0, - targetPx / 1.75]);
 
-  const xSmooth = useSpring(x, { stiffness: 70, damping: 22, mass: 0.8 });
-  const ySmooth = useSpring(y, { stiffness: 70, damping: 22, mass: 0.8 });
+  const xSmooth = useSpring(x, { stiffness: 250, damping: 50, mass: 1 });
+  const ySmooth = useSpring(y, { stiffness: 250, damping: 50, mass: 1 });
 
   return (
     <article ref={ref} className={styles.wrapper}>

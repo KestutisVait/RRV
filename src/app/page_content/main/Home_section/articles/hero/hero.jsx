@@ -21,14 +21,14 @@ export default function Hero() {
 
   // Smooth them (important on iOS)
   const heroImgYSmooth = useSpring(heroImgY, {
-    stiffness: 70,
-    damping: 22,
+    stiffness: 100,
+    damping: 30,
     mass: 0.8,
   });
 
   const heroBgYSmooth = useSpring(heroBgY, {
-    stiffness: 70,
-    damping: 22,
+    stiffness: 100,
+    damping: 30,
     mass: 0.8,
   });
 
