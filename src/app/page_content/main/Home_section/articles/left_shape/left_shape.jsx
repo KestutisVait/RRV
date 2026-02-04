@@ -1,32 +1,33 @@
 'use client';
 
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import styles from "./left_shape.module.css";
 
 export default function LeftShape() {
   const ref = useRef(null);
+  const [targetPx, setTargetPx] = useState(0);
+
+  // Update targetPx based on window height
+  useEffect(() => {
+    const updateTargetY = () => setTargetPx(window.innerHeight - 550);
+    updateTargetY(); // initial Y calculation
+
+    window.addEventListener("resize", updateTargetY);
+    return () => window.removeEventListener("resize", updateTargetY);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], [0, -160]);
-  const y = useTransform(scrollYProgress, [0, 1], [0, 320]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, targetPx]);
+  const x = useTransform(scrollYProgress, [0, 1], [0, - targetPx / 1.75]);
 
-  const xSmooth = useSpring(x, {
-    stiffness: 70,
-    damping: 22,
-    mass: 0.8,
-  });
-
-  const ySmooth = useSpring(y, {
-    stiffness: 70,
-    damping: 22,
-    mass: 0.8,
-  });
+  const xSmooth = useSpring(x, { stiffness: 70, damping: 22, mass: 0.8 });
+  const ySmooth = useSpring(y, { stiffness: 70, damping: 22, mass: 0.8 });
 
   return (
     <article ref={ref} className={styles.wrapper}>

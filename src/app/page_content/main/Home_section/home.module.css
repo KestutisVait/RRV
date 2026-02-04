@@ -2,7 +2,7 @@
   justify-content: start;
   align-items: center;
   position: relative;
-  scroll-snap-align: start;
+  /* scroll-snap-align: start; */
 }
 .bg_shape {
   position: absolute;
@@ -13,7 +13,7 @@
 
 @media screen and (max-width: 480px) {
   .bg_shape {
-    top: -15px;
-    right: 120px;
+    top: -6px;
+    right: 115px;
   }
 }
