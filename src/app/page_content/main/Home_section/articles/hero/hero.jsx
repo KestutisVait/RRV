@@ -2,23 +2,47 @@
 
 import Image from "next/image";
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import styles from "./hero.module.css";
 
 export default function Hero() {
   const ref = useRef(null);
 
-const { scrollY } = useScroll();
-  // Parallax mappings (tweak values to taste)
-  const heroImgY = useTransform(scrollY, [0, 1000], [0, 400]);
-  const heroBgY = useTransform(scrollY, [0, 1000], [0, 260]);
-  const heroShapeY = useTransform(scrollY, [0, 1000], [0, -120]);
+  // Track THIS hero only
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  // Raw parallax values
+  const heroImgY = useTransform(scrollYProgress, [0, 1], [0, 400]);
+  const heroBgY = useTransform(scrollYProgress, [0, 1], [0, 260]);
+  const heroShapeY = useTransform(scrollYProgress, [0, 1], [0, -120]);
+
+  // Smooth them (important on iOS)
+  const heroImgYSmooth = useSpring(heroImgY, {
+    stiffness: 70,
+    damping: 22,
+    mass: 0.8,
+  });
+
+  const heroBgYSmooth = useSpring(heroBgY, {
+    stiffness: 70,
+    damping: 22,
+    mass: 0.8,
+  });
+
+  const heroShapeYSmooth = useSpring(heroShapeY, {
+    stiffness: 70,
+    damping: 22,
+    mass: 0.8,
+  });
 
   return (
     <article ref={ref} className={styles.wrapper}>
       <motion.div
         className={styles.hero_img}
-        style={{ y: heroImgY }}
+        style={{ y: heroImgYSmooth }}
       >
         <Image
           src="/hero.webp"
@@ -32,7 +56,7 @@ const { scrollY } = useScroll();
 
       <motion.div
         className={styles.hero_bg}
-        style={{ y: heroBgY }}
+        style={{ y: heroBgYSmooth }}
       >
         <Image
           src="/hero_bg.webp"
@@ -44,7 +68,7 @@ const { scrollY } = useScroll();
 
       <motion.div
         className={styles.hero_bg_shape}
-        style={{ y: heroShapeY }}
+        style={{ y: heroShapeYSmooth }}
       >
         <Image
           src="/hero_bg_shape.svg"
