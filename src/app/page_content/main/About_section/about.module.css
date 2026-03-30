@@ -5,6 +5,9 @@
     align-items: start;
 }
 .stripes_wrapper{
+    position : absolute;
+    top: 800px;
+    right: 0;
     height: 100%;
     transform: rotate(180deg);
 }

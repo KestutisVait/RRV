@@ -1,5 +1,5 @@
 'use client'
-import styles from "@styles/page.module.css";
+import styles from "../main.module.css";
 import aboutStyles from "./about.module.css";
 import Image from "next/image";
 import { useEffect } from "react";
@@ -27,8 +27,8 @@ export default function AboutSection({ id, index }) {
           fadeHeight={100}
         />
       </div>
-      <MovingShape id={id}/>
-      <Hero />
+      {/* <MovingShape id={id}/> */}
+      {/* <Hero /> */}
     </section>
   );
 }

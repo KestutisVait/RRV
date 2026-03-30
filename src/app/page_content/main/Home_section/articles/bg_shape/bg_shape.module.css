@@ -1,0 +1,16 @@
+.wrapper {
+  height: 100dvh;
+  position: absolute;
+  top: 0px;
+  right: 274px;
+  transform: translateX(var(--offset-x, 0px));
+  will-change: transform;
+  z-index: 1;
+}
+
+@media screen and (max-width: 480px) {
+  .wrapper {
+    top: -6px;
+    right: 115px;
+  }
+}

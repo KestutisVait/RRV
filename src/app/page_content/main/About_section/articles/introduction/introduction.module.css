@@ -20,7 +20,7 @@
 .text_wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: start;
   width: 60%;
   height: 100%;
@@ -30,20 +30,21 @@
 .text_wrapper > p:not(:first-of-type) {
   margin: 0 0 20px 0;
   font-size: 16px;
-  text-align: justify;
+  /* font-weight: 400; */
+  /* text-align: justify; */
 }
 .text_wrapper p:nth-of-type(2) {width : 100%;}
-.text_wrapper p:nth-of-type(3) {width : 95%;}
-.text_wrapper p:nth-of-type(4) {width : 85%;}
-.text_wrapper p:nth-of-type(5) {width : 85%;}
-.text_wrapper p:nth-of-type(n+6):not(:last-of-type) {
-  width: 60%;
+.text_wrapper p:nth-of-type(3) {width : 100%;}
+.text_wrapper p:nth-of-type(4) {width : 100%;}
+.text_wrapper p:nth-of-type(5) {width : 100%;}
+.text_wrapper p:nth-of-type(n+5):not(:last-of-type) {
+  width: 80%;
   line-height: 20px;
   font-size: 1.1rem;
   font-weight: 600;
-  margin: 0 0 2px 20px;
+  margin: 0 0 8px 20px;
   letter-spacing: -1px;
-  color: var(--lightText);
+  /* color: var(--lightText); */
   /* line-height: 15px; */
 }
 .text_wrapper p:last-of-type {margin-top: 20px;}
@@ -54,4 +55,14 @@
   letter-spacing: -1px;
   margin-bottom: 40px;
   color: var(--lightText);
+}
+
+@media screen and (max-width: 480px) {
+  .wrapper {
+    position : relative;
+    height: 100%;
+    padding:25px 15px 0 15px ;
+  }
+  .text_wrapper {width: 100%;}
+  .text_wrapper p {margin: 0 0 20px 0}
 }

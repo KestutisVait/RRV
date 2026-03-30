@@ -27,7 +27,7 @@ export default function Introduction() {
       <div className={styles.text_wrapper}>
         {Object.keys(data).length > 0 && 
           <>
-            <p className={styles.greeting}>{data.greeting}</p>
+            {/* <p className={styles.greeting}>{data.greeting}</p> */}
             {data.pastraipa.map((item, index) => 
               <p key={index}>{item}</p>)
             } 
