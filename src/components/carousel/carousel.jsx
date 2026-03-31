@@ -30,18 +30,18 @@ export default function Carousell({ direction,  cardData, infoPageMode }) {
   return (
     <div 
       className={styles.wrapper} 
-      style={{ 
-        flexDirection: flow === "right" ? "row-reverse" : "row",
-        justifyContent: flow === "right" ? "end" : "start",
-      }}
+      // style={{ 
+      //   flexDirection: flow === "right" ? "row-reverse" : "row",
+      //   justifyContent: flow === "right" ? "end" : "start",
+      // }}
     >
       <div 
-        className={styles.icon_wrapper}
-        style={{
-          transform : flow === "right" ? "translateX(50%)" : "translateX(-50%)",
-          left: flow === "right" ? "100%" : "0px",
-          visibility: cardData.length > 1 ? "visible" : "hidden",
-        }}  
+        className={`${styles.icon_wrapper} ${styles.icon_wrapper_left}`}
+        // style={{
+        //   transform : flow === "right" ? "translateX(50%)" : "translateX(-50%)",
+        //   left: flow === "right" ? "100%" : "0px",
+        //   visibility: cardData.length > 1 ? "visible" : "hidden",
+        // }}  
       >
         { flow === "right" ? 
           <CiCircleChevRight className={styles.icon_next} onClick={nextCard}/> :
@@ -65,13 +65,13 @@ export default function Carousell({ direction,  cardData, infoPageMode }) {
         } 
       </div>
       <div 
-        className={styles.icon_wrapper}
-        style={{
-          transform : flow === "right" ? "translateX(50%)" : "translateX(-50%)",
-          left: flow === "right" ? "300px" : "45%",
-          visibility: cardData.length > 1 ? "visible" : "hidden",
+        className={`${styles.icon_wrapper} ${styles.icon_wrapper_right}`}
+        // style={{
+        //   transform : flow === "right" ? "translateX(50%)" : "translateX(-50%)",
+        //   left: flow === "right" ? "300px" : "45%",
+        //   visibility: cardData.length > 1 ? "visible" : "hidden",
 
-        }}  
+        // }}  
       >
         { flow === "right" ? 
           <CiCircleChevLeft className={styles.icon_back} onClick={prevCard}/>:

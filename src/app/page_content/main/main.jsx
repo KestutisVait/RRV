@@ -42,9 +42,9 @@ export default function Main() {
           {/* //-------------------------------------------------------// */}
           <HomeSection id={dataSections[0].href} index={dataSections[0].id}/>
           <AboutSection id={dataSections[1].href} index={dataSections[1].id}/>
-          {/* <ProductProvider>
+          <ProductProvider>
             <ProductsSection id={dataSections[2].href} index={dataSections[2].id}/>
-          </ProductProvider> */}
+          </ProductProvider>
           {/* <section
             id={dataSections[1].href}
             className={styles.section}

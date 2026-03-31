@@ -25,7 +25,7 @@
 .not_visable {
   opacity: 0;
 }
-.card_wrapper {
+/* .card_wrapper {
   width: 45%;
   height: 100%;
   padding: 25px 10px 0 10px;
@@ -34,7 +34,7 @@
   justify-content: start;
   align-items: center;
   z-index: 2;
-}
+} */
 .icon_back, .icon_next {
   font-size: 50px;
   font-weight: 100;
@@ -57,4 +57,16 @@
   right: 90px;
   z-index: 2;
   opacity: 0.5;
+}
+@media screen and (max-width: 480px) {
+  .wrapper { 
+    position: relative;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+     -webkit-mask-image: none;
+    mask-image: none;
+  }
 }

@@ -61,6 +61,7 @@
   top: 40%;  
   z-index: 3;
 }
+
 .icon_back, .icon_next {
   font-size: 50px;
   font-weight: 100;
@@ -72,5 +73,50 @@
 }
 .icon_back:hover, .icon_next:hover {
   opacity: 1;
+}
+@media screen and (max-width: 480px) {
+  .wrapper { 
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+     -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .card_wrapper {
+    width: 80%;
+    height: 90%;
+  }
+  .icon_wrapper {
+    top: 34%;
+  }
+  .icon_wrapper_left {
+    left: 10px;
+  }
+  .icon_wrapper_right {
+    right: 10px;
+  }
+  .next_card_wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90%;
+    z-index: -1;
+    display: none;
+  }
+  .icon_back, .icon_next {
+    display: absolute;
+  }
+  .icon_back {
+    left: 10px;
+    top: 10px;
+  }
+  .icon_next {
+    right: 10px;
+  }
 }
 
