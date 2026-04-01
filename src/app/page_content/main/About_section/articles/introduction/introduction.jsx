@@ -13,7 +13,7 @@ export default function Introduction() {
     const fetchData = async () => {
       try {
         const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/data/introduction.json`);
-        console.log(res.data);
+        // console.log(res.data);
         setData(res.data);
       } catch (error) {
         console.log(error);

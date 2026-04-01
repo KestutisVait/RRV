@@ -59,6 +59,7 @@ export default function Carousell({ direction,  cardData, infoPageMode }) {
                 shortInfo={ card.shortInfo} 
                 pricePerHour={ card.pricePerHour} 
                 handleInfoClick={infoPageMode}
+                index={card.index}
               />
             </div>
           ))

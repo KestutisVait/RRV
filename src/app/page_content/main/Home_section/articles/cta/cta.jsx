@@ -70,9 +70,9 @@ export default function Cta() {
         <span>Savo</span>
         <span>Potencialą !</span>
       </div>
-      <div className={styles.post_slogan}>
+      {/* <div className={styles.post_slogan}>
         <p>Asmeninis augimas ir saviugda</p>
-      </div>  
+      </div>   */}
       <PillButton 
         buttonContent={ctaPillContent()} 
         backgroundColor={"#9d00ff"}

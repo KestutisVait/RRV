@@ -85,22 +85,34 @@
 @media screen and (max-width: 480px) {
 
   .wrapper {
-    height: 400px;
+    /* height: 400px; */
     margin-left: 5%;
     justify-content: end;
-    height: 80vh;
-  }
-  .slogan {
-    font-size: 40px;
-    line-height: 30px;
-    margin-top: 2rem;
-  }
-  .slogan span:nth-child(2) {
-    font-size: 40px;
+    height: 90vh;
+    /* padding-bottom: 20px; */
   }
   .post_slogan{
     font-size: 1rem;
     margin: 0 0 1rem 0;
+  }
+  .slogan {
+    font-size: 40px;
+    line-height: 30px;
+    margin-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    /* color: var(--purple) */
+  }
+  .slogan span:nth-child(2) {
+    font-size: 40px;
+  }
+  .slogan span:nth-child(3) {
+    font-size: 40px;
+        color: var(--purple)
+
+  }
+  .post_slogan{
+    font-size: 1rem;
+    margin: 0 0 rem 0;
   }
   .home_logo_wrapper{
     flex-direction: column;

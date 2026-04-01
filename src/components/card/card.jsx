@@ -1,8 +1,12 @@
 import styles from "./card.module.css";
 import Image from "next/image";
+import { useRouter } from 'next/navigation';
 import PillButton from "../Pill_button/pill";
 
-export default function Card({ poster, price, shortInfo, pricePerHour, empty, handleInfoClick }) {
+export default function Card({ poster, price, shortInfo, pricePerHour, empty, handleInfoClick, index }) {
+
+  const router = useRouter();
+
   return (
     <div className={styles.wrapper}  style={{ filter: `${empty ? " grayscale(0.8)" : "none"}` }}>
       <img className={styles.poster} src={poster} alt="card" />
@@ -26,7 +30,8 @@ export default function Card({ poster, price, shortInfo, pricePerHour, empty, ha
           textColor="var(--lightText)" 
           backgroundColor="var(--darkText)" 
           buttonContent="Plačiau" 
-          onClickAction={handleInfoClick} 
+          // onClickAction={handleInfoClick} 
+          onClickAction={() => router.push(`/info/${index}`)} 
         />
       </div>
     </div>

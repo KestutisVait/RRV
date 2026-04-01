@@ -3,7 +3,7 @@
 export default function Example({ someVariable }) {
   return (
     <div>
-      <p>{someVariable}</p>
+      <p></p>
     </div>
   );
 }
