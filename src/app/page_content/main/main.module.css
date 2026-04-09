@@ -26,9 +26,9 @@
 /* .section:nth-child(3){
     background-color: rgb(155, 221, 41, 0.5);
 } */
-.section:nth-child(4){
+/* .section:nth-child(4){
     background-color: rgb(202, 192, 45, 0.5);
-}
+} */
 .section:nth-child(5){
     background-color: rgb(210, 59, 197, 0.5);
 }

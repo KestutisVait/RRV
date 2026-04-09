@@ -2,8 +2,8 @@
   --background: #F9FFF7;
   --foreground: #171717;
   --purple: #9d00ff;
-  --yellow: #FFC000;
-  --lightText:#F9FFF7 ;
+  --yellow: rgb(255, 192, 0);
+  --lightText:rgb(249, 255, 247) ;
   --darkText:#042601;
   --red: #bc1417;
 }

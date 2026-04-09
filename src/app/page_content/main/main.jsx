@@ -5,7 +5,9 @@ import { useSectionSnap } from "@/lib/hooks/useSectionSnap";
 import HomeSection from "./Home_section/home_section";
 import AboutSection from "./About_section/about_section";
 import ProductsSection from "./Products_section/products_section";
+import FeedbackSection from "./Feedback_section/feedback";
 import { ProductProvider } from "@/context/ProductsContext";
+import { FeedbackProvider } from "@/context/FeedbackContext";
 import Carousel from "@/components/carousel/carousel";
 import { useRef, useEffect, useState } from 'react';
 
@@ -45,6 +47,9 @@ export default function Main() {
           <ProductProvider>
             <ProductsSection id={dataSections[2].href} index={dataSections[2].id}/>
           </ProductProvider>
+          <FeedbackProvider>
+            <FeedbackSection id={dataSections[3].href} index={dataSections[3].id}/>
+          </FeedbackProvider>
           {/* <section
             id={dataSections[1].href}
             className={styles.section}
@@ -59,16 +64,15 @@ export default function Main() {
             >
             {dataSections[2].label}
             </section> */}
-          <ProductProvider>
+          {/* <ProductProvider>
             <section
               id={dataSections[3].href}
               className={`section ${styles.section}`}
               data-section={dataSections[3].id}
             >
               {dataSections[3].label}
-              {/* <Carousel direction={"right"}/> */}
             </section>
-          </ProductProvider>
+          </ProductProvider> */}
           <section
             id={dataSections[4].href}
             className={`section ${styles.section}`}

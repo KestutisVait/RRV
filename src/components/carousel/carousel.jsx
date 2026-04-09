@@ -17,6 +17,7 @@ export default function Carousell({ direction,  cardData, infoPageMode }) {
     setActiveCardIndex(currentCard);
   }, [currentCard, setActiveCardIndex]);
 
+
   const nextCard = () => {
     setCurrentCard(prev => (prev === cardData.length - 1 ? 0 : prev + 1));
   };
